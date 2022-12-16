@@ -19,7 +19,7 @@
     <div class="decor">
             <img src="../avatar.png" /><br/>
 
-      <input type="text" name="user" placeholder="Nom d'utilisateur" require
+      <input type="text" name="user" placeholder="Nom du restaurant" require
         <?php
                 if(isset($_COOKIE['login']))
                      echo "value= '".$_COOKIE['login']."'";
