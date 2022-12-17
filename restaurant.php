@@ -17,7 +17,7 @@
         </p>
         <form method="POST" action="verifAuthent.php" enctype="multipart/form-data">
     <div class="decor">
-            <img src="../avatar.png" /><br/>
+            <img src="logoapp.png" /><br/>
 
       <input type="text" name="user" placeholder="Nom du restaurant" require
         <?php
