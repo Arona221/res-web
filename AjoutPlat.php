@@ -43,7 +43,7 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
 
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4>Argentin</h4>
+        <h4><?=$_SESSION["admin"]["login"]?></h4>
       </div>
     </div>
   </header>

@@ -40,7 +40,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
 
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4>Argentin</h4>
+        <h4><?=$_SESSION["admin"]["login"]?></h4>
       </div>
     </div>
   </header>
