@@ -23,7 +23,7 @@ function moveFile(string $srcPath, string $desPath, string $fileName, int $i = n
     if (move_uploaded_file($srcPath, $desPath)) {
         return $desPath;
     } else
-        return null;
+        return "";
 }
 function checkZize(float $sizeIni, int $size = 1048576)
 {

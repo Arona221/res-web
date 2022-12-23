@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +8,7 @@
   <meta charset="UTF-8" />
   <title>Admin Dashboard </title>
   <link rel="stylesheet" href="style/dasbord.css" />
+  <link rel="stylesheet" href="style/menu.css" />
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 </head>
@@ -21,7 +25,7 @@
 
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4>Argentin</h4>
+        <h4><?=$_SESSION["admin"]["login"]?></h4>
       </div>
     </div>
   </header>
@@ -33,9 +37,27 @@
 
         <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
         <a href="#" id="tab" class="active">Tableau de bord</a>
-        <a href="./AjoutMenu.php">Ajouter le menu du jour</a>
-        <a href="#">Gerer les controleurs</a>
-        <a id="dec" href="#"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
+        
+         <ul class="menu">
+      <li><a href="#"> Ajouter Menu ou Plat </a>
+        <ul class="sousmenu">
+          <li><a href="./AjoutMenu.php">Ajouter un menu</a></li>
+          <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
+         
+        </ul>
+      </li>
+      </ul>
+        <a id ='det' href="#">Detail menu</a>
+        <ul class="menu">
+      <li><a href="#">Gerer les controleurs</a>
+        <ul class="sousmenu">
+          <li><a href="./gererContr.php">Ajouter</a></li>
+          <li><a href="#">Consulter liste</a></li>
+         
+        </ul>
+      </li>
+      </ul>
+        <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
 
 
 
@@ -46,7 +68,7 @@
       <h2>Tableau de bord</h2>
       <div class="promo_card">
         <h1>Bienvenu sur la LaFourchette</h1>
-        <span>Restaurant Argentin</span><br><br>
+        <span>Restaurant  <?=$_SESSION["admin"]["login"]?></span><br><br>
         <p id="satis"> La satisfaction des étudiants est notre crédo</p>
       </div>
 

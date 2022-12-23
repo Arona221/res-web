@@ -3,22 +3,6 @@ session_start();
 require("db/connectdb.php");
 require("functions.php");
 $p_connect = getConnection();
-if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['platName']) && !empty($_FILES['image']) && !empty($_FILES['image'])) {
-  echo "je suis la";
-  if ($_FILES['image']['error'] === 0) {
-    if (checkImgExtension(checkExtention($_FILES["image"]['full_path']))) {
-      $pathFinal =   moveFile($_FILES["image"]['tmp_name'], "images", checkExtention($_FILES["image"]['full_path']));
-      $p_request = $p_connect->prepare("INSERT INTO plats(nom,description,img_url,resto) VALUES (:nom, :description,:img_url,:resto)");
-      $nom = $_POST["platName"];
-      $description = $_POST["description"];
-      $p_request->execute(array("nom" => $nom, "description" => $description, "img_url" => $pathFinal, "resto" => (int)$_SESSION["admin"]["resto"]));
-    } else
-      die("L'extension du fichier: est invalide");
-  } else
-    die("Une erreur s'est produit lors chargement de l'image");
-  //
-  //
-}
 $p_request = $p_connect->prepare("SELECT *FROM plats WHERE resto=:resto");
 $p_request->execute(["resto" => (int)$_SESSION["admin"]["resto"]]);
 $plats = $p_request->fetchAll(PDO::FETCH_ASSOC);
@@ -39,6 +23,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
   <meta charset="UTF-8" />
   <title>Ajout menu</title>
   <link rel="stylesheet" href="style/dasbord.css" />
+  <link rel="stylesheet" href="style/menu.css" />
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 </head>
@@ -64,29 +49,34 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
       <div class="side_navbar">
         <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
         <a href="./dasbord.php" id="tab" class="active">Tableau de bord</a>
-        <a href="#">Ajouter le menu du jour</a>
-        <a href="#">Gerer les controleurs</a>
-        <a id="dec" href="#"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
+        <ul class="menu">
+        <li><a href="#">Ajout Menu ou Plat</a>
+        <ul class="sousmenu">
+          <li><a href="#">Ajouter un menu</a></li>
+          <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
+         
+        </ul>
+      </li>
+      </ul>
+        <a  id ='det'href="#">Detail menu</a>
+        <ul class="menu">
+        <li><a href="#">Gerer les controleurs</a>
+        <ul class="sousmenu">
+          <li><a href="./gererContr.php">Ajouter</a></li>
+          <li><a href="#">Consulter liste</a></li>
+         
+        </ul>
+      </li>
+      </ul>
+        <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
       </div>
     </nav>
 
     <div class="main-body">
+    <div class="decor">
       <form method="POST" action="" enctype="multipart/form-data">
-        <div class="decor">
-          <p>
-            <label>Libellé</label>
-            <input type="text" name="platName" require /> <br />
-          </p>
-          <p>
-            <label for="">image</label>
-            <input type="file" name="image">
-          </p>
-          <p>
-            <label for="">Description</label>
-            <textarea name="description" id="" cols="2" rows="2"></textarea><br>
-          </p>
-          <button type="submit">Ajouter</button>
-      </form>
+       
+        
       <form method="POST">
         <p id="A"> Menu</p>
         <p>
@@ -103,6 +93,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
           </select>
         </p>
         <p>
+        <label for="" class="form-label mt-4">Plat 2</label>
           <select class="form-select" id="ipNomRepat1" name="plat_repas2">
             <?php foreach ($plats as $plat) : ?>
               <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
@@ -128,7 +119,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
         </p>
 
         <button type="submit">Ajouter</button>
-
+      </form>
     </div>
 
 
@@ -144,6 +135,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
     width: 70%;
     height: auto;
     margin: auto;
+    margin-top: 5%;
     text-align: center;
     padding-top: 2%;
 
@@ -177,6 +169,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
     border: none;
     color: #ffffff;
     border-radius: 5px;
+    margin-bottom: 5%;
   }
 
   #A {
