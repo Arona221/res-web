@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,15 +59,20 @@
     </nav>
 
     <div class="main-body">
-    <p id="A"> Ajouter un controleur</p><br>
+    
       <form method="POST" action="" enctype="multipart/form-data">
         <div class="decor">
+        <p id="A"> Ajouter un controleur</p><br>
           <p>
             <label>Nom</label><br>
             <input type="text" name="nameCon" require /> <br />
           </p>
           <p>
             <label>Prenom</label><br>
+            <input type="text" name="PenomCont" require /> <br />
+          </p>
+          <p>
+            <label>Identifiant</label><br>
             <input type="text" name="PenomCont" require /> <br />
           </p>
           <p>
@@ -94,7 +102,7 @@
     height: auto;
     margin: auto;
     text-align: center;
-    padding-top: 5%;
+    padding-top: 2%;
 
 
   }
@@ -117,8 +125,8 @@
     width: 50%;
     height: auto;
     font-size: 20px;
-    margin-top: 4%;
-    margin-bottom: 8%;
+    margin-top: 3%;
+    margin-bottom: 4%;
     
     box-sizing: border-box;
     background-color: #FA4A0C;

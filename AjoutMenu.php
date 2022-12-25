@@ -78,7 +78,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
        
         
       <form method="POST">
-        <p id="A"> Menu</p>
+        <p id="A"> Menu du Jour</p><br>
         <p>
           <label>Date </label>
           <input type="date" name="date"><br>
