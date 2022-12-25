@@ -1,8 +1,6 @@
 <?php
 session_start();
-require("db/connectdb.php");
-require("functions.php");
-$p_connect = getConnection();
+$connect = new PDO("mysql:host=localhost;port=3306;dbname=sectioninf", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $p_request = $p_connect->prepare("SELECT *FROM plats WHERE resto=:resto");
 $p_request->execute(["resto" => (int)$_SESSION["admin"]["resto"]]);
 $plats = $p_request->fetchAll(PDO::FETCH_ASSOC);

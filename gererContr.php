@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,12 +61,12 @@ session_start();
 
     <div class="main-body">
     
-      <form method="POST" action="" enctype="multipart/form-data">
+      <form method="POST" action="./TraitCont.php" enctype="multipart/form-data">
         <div class="decor">
-        <p id="A"> Ajouter un controleur</p><br>
+        
           <p>
             <label>Nom</label><br>
-            <input type="text" name="nameCon" require /> <br />
+            <input type="text" name="nameCon" require="require" /> <br />
           </p>
           <p>
             <label>Prenom</label><br>
@@ -73,7 +74,11 @@ session_start();
           </p>
           <p>
             <label>Identifiant</label><br>
-            <input type="text" name="PenomCont" require /> <br />
+            <input type="text" name="IdentCont" require /> <br />
+          </p>
+          <p>
+            <label>Mot de passe</label><br>
+            <input type="password" name="PassCont" require /> <br />
           </p>
           <p>
             <label>Telephone</label><br>
@@ -85,8 +90,9 @@ session_start();
           </p>
       
         <button type="submit">Ajouter</button>
-
+     
     </div>
+    </form> 
 
 
   </div>
@@ -125,8 +131,8 @@ session_start();
     width: 50%;
     height: auto;
     font-size: 20px;
-    margin-top: 3%;
-    margin-bottom: 4%;
+    margin-top: 1%;
+    margin-bottom: 2%;
     
     box-sizing: border-box;
     background-color: #FA4A0C;
