@@ -1,6 +1,8 @@
 <?php
 session_start();
-$connect = new PDO("mysql:host=localhost;port=3306;dbname=sectioninf", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+require("db/connectdb.php");
+require("functions.php");
+$p_connect = getConnection();
 $p_request = $p_connect->prepare("SELECT *FROM plats WHERE resto=:resto");
 $p_request->execute(["resto" => (int)$_SESSION["admin"]["resto"]]);
 $plats = $p_request->fetchAll(PDO::FETCH_ASSOC);
@@ -61,7 +63,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
         <li><a href="#">Gerer les controleurs</a>
         <ul class="sousmenu">
           <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="#">Consulter liste</a></li>
+          <li><a href="./ConsulterList.php">Consulter liste</a></li>
          
         </ul>
       </li>

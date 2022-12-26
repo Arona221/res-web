@@ -67,7 +67,7 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
         <li><a href="#">Gerer les controleurs</a>
         <ul class="sousmenu">
           <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="#">Consulter liste</a></li>
+          <li><a href="./ConsulterList.php">Consulter liste</a></li>
          
         </ul>
       </li>
