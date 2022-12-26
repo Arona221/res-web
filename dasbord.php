@@ -47,7 +47,7 @@ session_start();
         </ul>
       </li>
       </ul>
-        <a id ='det' href="#">Detail menu</a>
+        <a id ='det' href="detail.php">Detail menu</a>
         <ul class="menu">
       <li><a href="#">Gerer les controleurs</a>
         <ul class="sousmenu">

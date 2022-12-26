@@ -1,11 +1,12 @@
 <?php
 try
 {
+  session_start();
   $connect = new PDO("mysql:host=localhost;port=3306;dbname=memdb", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
  
   if (isset($_POST["nameCon"]) && isset($_POST["PenomCont"]) && isset($_POST["IdentCont"])&& isset($_POST["PassCont"]) && isset($_POST["TelCont"]) && isset($_POST["AdresseCont"]))
  
-  $reqControl = $connect->prepare("INSERT INTO controler (nom,prenom,idenifiant,mot_passe,telephone,adresse) VALUES(:nameCon,:PenomCont,:IdentCont,:PassCont,:TelCont,:AdresseCont)");
+  $reqControl = $connect->prepare("INSERT INTO controler (nom,prenom,idenifiant,mot_passe,telephone,adresse,nomRest,status) VALUES(:nameCon,:PenomCont,:IdentCont,:PassCont,:TelCont,:AdresseCont,:nomRest,:status)");
   
   $reqControl->bindValue(':nameCon', $_POST['nameCon']);
   $reqControl->bindValue(':PenomCont', $_POST['PenomCont']);
@@ -13,6 +14,8 @@ try
   $reqControl->bindValue(':PassCont', $_POST['PassCont']);
   $reqControl->bindValue(':TelCont', $_POST['TelCont']);
   $reqControl->bindValue(':AdresseCont', $_POST['AdresseCont']);
+  $reqControl->bindValue(':nomRest', $_SESSION["admin"]["login"]);
+  $reqControl->bindValue(':status', intval(0));
  
   $resControl_ok =$reqControl->execute();
 

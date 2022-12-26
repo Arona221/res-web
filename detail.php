@@ -54,7 +54,7 @@ session_start();
       <li><a href="#">Gerer les controleurs</a>
         <ul class="sousmenu">
           <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="#">Consulter liste</a></li>
+          <li><a href="./ConsulterList.php">Consulter liste</a></li>
          
         </ul>
       </li>
@@ -67,72 +67,12 @@ session_start();
     </nav>
 
     <div class="main-body">
-      <h2 style="text-align: center; color:#FA4A0C;">Liste de controleurs</h2>
+      <h2 style="text-align: center; color:#FA4A0C;">Details Menu du Jour</h2>
       
-
-      <table>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Identifiant</th>
-            <th>Téléphone</th>
-            <th>Addresse</th>
-            <th>Activé/Desactivé</th>
-            <th>Supprimé</th>
-          </tr>
      <?php
 
         $connect = new PDO("mysql:host=localhost;port=3306;dbname=memdb", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        $resto=$_SESSION["admin"]["login"];
-        $resConsult= $connect->query("SELECT * FROM controler where nomRest='$resto'");
-       
-        while($ligne=$resConsult->fetch())
-        {
-    
-         $id=$ligne["id"];
-         $nom=$ligne["nom"];
-         $prenom=$ligne["prenom"];
-         $identifiant=$ligne["idenifiant"];
-         $telephone=$ligne["telephone"];
-         $adresse=$ligne["adresse"];
-
-        ?>
-
-         <tr>
-              <td>  <?php echo"$id "; ?> </td>
-              <td> <?php echo"$nom"; ?></td>
-              <td>  <?php echo"$prenom"; ?></td>
-              <td>  <?php echo"$identifiant "; ?> </td>
-              <td>  <?php echo"$telephone"; ?></td>
-              <td>  <?php echo"$adresse "; ?> </td>
-              <td><?php
-                if($ligne["status"]==1)
-                {
-                  echo'<p> <a href="activer.php? id='.$ligne['id'].'&status=0" style="background-color:green;color:black"> Activité </a> </p>';
-                }else
-                {
-                  echo'<p> <a href="activer.php? id='.$ligne['id'].'&status=1" style="background-color:red;color:black"> Désactivité </a> </p>';
-                }
-
-                ?>
-               
-            </td>
-              <td><?php echo" <a href='deleteControl.php? id=$id' style='color:red;';> <i class='fa fa-trash' aria-hidden='true' onclick='return confirmation();'></i> </a> "?> <td>
-        
-            </tr>
-
-       <?php
-        }
-        ?>
-        </table>
-        
-
-
-    
-
-     
-
+      ?>
    
 
   </div>
