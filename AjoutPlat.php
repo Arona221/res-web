@@ -3,7 +3,7 @@ session_start();
 require("db/connectdb.php");
 require("functions.php");
 $p_connect = getConnection();
-if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['platName']) && !empty($_FILES['image']) && !empty($_FILES['image'])) {
+if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['platName']) && !empty($_FILES['image']) && !empty($_POST['type'])) {
   if ($_FILES['image']['error'] === 0) {
     if (checkImgExtension(checkExtention($_FILES["image"]['full_path']))) {
       $pathFinal =   moveFile($_FILES["image"]['tmp_name'], "images", checkExtention($_FILES["image"]['full_path']));
@@ -11,7 +11,8 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
       $p_request = $p_connect->prepare("INSERT INTO plats(nom,description,img_url,resto) VALUES (:nom, :description,:img_url,:resto)");
       $nom = $_POST["platName"];
       $description = $_POST["description"];
-      $p_request->execute(array("nom" => $nom, "description" => $description, "img_url" => $pathFinal, "resto" => (int)$_SESSION["admin"]["resto"]));
+      $type = $_POST["type"];
+      $p_request->execute(array("nom" => $nom, "description" => $description, "img_url" => $pathFinal, "type" => $type,"resto" => (int)$_SESSION["admin"]["resto"]));
     } else
       die("L'extension du fichier: est invalide");
   } else
@@ -65,13 +66,11 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
         </ul>
         <a id='det' href="#">Detail menu</a>
         <ul class="menu">
-          <li><a href="#">Gerer les controleurs</a>
-            <ul class="sousmenu">
-              <li><a href="./gererContr.php">Ajouter</a></li>
-              <li><a href="#">Consulter liste</a></li>
-
-            </ul>
-          </li>
+        <li><a href="#">Gerer les controleurs</a>
+        <ul class="sousmenu">
+          <li><a href="./gererContr.php">Ajouter</a></li>
+          <li><a href="./ConsulterList.php">Consulter liste</a></li>
+         
         </ul>
         <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
       </div>
@@ -91,9 +90,17 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
             <input type="file" name="image">
           </p>
           <p>
+              <label>Type</label><br>
+               <select name="type" id="">
+                <option value="dejeuner">Dejeuner</option>
+                <option value="dinner">Dinner</option>
+               </select>
+          </p>
+          <p>
             <label for="">Description</label><br>
             <textarea name="description" id="" cols="2" rows="2"></textarea><br>
           </p>
+         
           <button type="submit">Ajouter</button>
         </form>
 

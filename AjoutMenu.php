@@ -60,13 +60,11 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
         </ul>
         <a id='det' href="#">Detail menu</a>
         <ul class="menu">
-          <li><a href="#">Gerer les controleurs</a>
-            <ul class="sousmenu">
-              <li><a href="./gererContr.php">Ajouter</a></li>
-              <li><a href="#">Consulter liste</a></li>
-
-            </ul>
-          </li>
+        <li><a href="#">Gerer les controleurs</a>
+        <ul class="sousmenu">
+          <li><a href="./gererContr.php">Ajouter</a></li>
+          <li><a href="./ConsulterList.php">Consulter liste</a></li>
+         
         </ul>
         <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
       </div>
