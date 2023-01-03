@@ -1,6 +1,8 @@
 <?php
 session_start();
-$connect = new PDO("mysql:host=localhost;port=3306;dbname=sectioninf", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+require_once(__DIR__ . DIRECTORY_SEPARATOR . "db" . DIRECTORY_SEPARATOR . "connectdb.php");
+$connectionDB = getConnection();
+$p_connect = new PDO("mysql:host=localhost;port=3306;dbname=memdb", "root", "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 $p_request = $p_connect->prepare("SELECT *FROM plats WHERE resto=:resto");
 $p_request->execute(["resto" => (int)$_SESSION["admin"]["resto"]]);
 $plats = $p_request->fetchAll(PDO::FETCH_ASSOC);
@@ -38,7 +40,7 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
 
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4><?=$_SESSION["admin"]["login"]?></h4>
+        <h4><?= $_SESSION["admin"]["login"] ?></h4>
       </div>
     </div>
   </header>
@@ -48,80 +50,80 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
         <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
         <a href="./dasbord.php" id="tab" class="active">Tableau de bord</a>
         <ul class="menu">
-        <li><a href="#">Ajout Menu ou Plat</a>
-        <ul class="sousmenu">
-          <li><a href="#">Ajouter un menu</a></li>
-          <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
-         
+          <li><a href="#">Ajout Menu ou Plat</a>
+            <ul class="sousmenu">
+              <li><a href="#">Ajouter un menu</a></li>
+              <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
+
+            </ul>
+          </li>
         </ul>
-      </li>
-      </ul>
-        <a  id ='det'href="#">Detail menu</a>
+        <a id='det' href="#">Detail menu</a>
         <ul class="menu">
-        <li><a href="#">Gerer les controleurs</a>
-        <ul class="sousmenu">
-          <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="#">Consulter liste</a></li>
-         
+          <li><a href="#">Gerer les controleurs</a>
+            <ul class="sousmenu">
+              <li><a href="./gererContr.php">Ajouter</a></li>
+              <li><a href="#">Consulter liste</a></li>
+
+            </ul>
+          </li>
         </ul>
-      </li>
-      </ul>
         <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
       </div>
     </nav>
 
     <div class="main-body">
-    <div class="decor">
-      <form method="POST" action="" enctype="multipart/form-data">
-       
-        
-      <form method="POST">
-        <p id="A"> Menu du Jour</p><br>
-        <p>
-          <label>Date </label>
-          <input type="date" name="date"><br>
-        </p>
-        <p id="A"> Repas</p>
-        <p>
-          <label for="ipRepas1" class="form-label mt-4">Plat 1</label>
-          <select class="form-select" id="ipRepas1" name="plat_repas">
-            <?php foreach ($plats as $plat) : ?>
-              <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
-            <?php endforeach ?>
-          </select>
-        </p>
-        <p>
-        <label for="" class="form-label mt-4">Plat 2</label>
-          <select class="form-select" id="ipNomRepat1" name="plat_repas2">
-            <?php foreach ($plats as $plat) : ?>
-              <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
-            <?php endforeach ?>
-          </select>
-        </p>
-        <p id="A"> Dinner</p>
-        <p>
-          <label for="ipNomPlat1Diner" class="form-label mt-4">Plat 1</label>
-          <select class="form-select" id="idClasse" name="plat_diner">
-            <?php foreach ($plats as $plat) : ?>
-              <option id="ipNomPlat1Diner" value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
-            <?php endforeach ?>
-          </select>
-        </p>
-        <p>
-          <label for="">Plat 2</label>
-          <select id="ipNomPlatDiner2" class="form-select" id="idClasse" name="plat_diner2">
-            <?php foreach ($plats as $plat) : ?>
-              <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
-            <?php endforeach ?>
-          </select>
-        </p>
+      <div class="decor">
+        <form method="POST" action="" enctype="multipart/form-data">
 
-        <button type="submit">Ajouter</button>
-      </form>
+
+          <form method="POST">
+            <p id="A"> Menu du Jour</p><br>
+            <p>
+              <label>Date </label>
+              <input type="date" name="date"><br>
+            </p>
+            <p id="A"> Repas</p>
+            <p>
+              <label for="ipRepas1" class="form-label mt-4">Plat 1</label>
+              <select class="form-select" id="ipRepas1" name="plat_repas">
+                <?php foreach ($plats as $plat) : ?>
+                  <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </p>
+            <p>
+              <label for="" class="form-label mt-4">Plat 2</label>
+              <select class="form-select" id="ipNomRepat1" name="plat_repas2">
+                <?php foreach ($plats as $plat) : ?>
+                  <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </p>
+            <p id="A"> Dinner</p>
+            <p>
+              <label for="ipNomPlat1Diner" class="form-label mt-4">Plat 1</label>
+              <select class="form-select" id="idClasse" name="plat_diner">
+                <?php foreach ($plats as $plat) : ?>
+                  <option id="ipNomPlat1Diner" value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </p>
+            <p>
+              <label for="">Plat 2</label>
+              <select id="ipNomPlatDiner2" class="form-select" id="idClasse" name="plat_diner2">
+                <?php foreach ($plats as $plat) : ?>
+                  <option value="<?= $plat['id'] ?>"><?= $plat['nom'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </p>
+
+            <button type="submit">Ajouter</button>
+          </form>
+      </div>
+
+
     </div>
-
-
-  </div>
 </body>
 
 </html>

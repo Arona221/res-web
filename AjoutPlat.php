@@ -5,8 +5,9 @@ require("functions.php");
 $p_connect = getConnection();
 if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['platName']) && !empty($_FILES['image']) && !empty($_FILES['image'])) {
   if ($_FILES['image']['error'] === 0) {
-    if (checkImgExtension(checkExtention($_FILES["image"]['name']))) {
-      $pathFinal =   moveFile($_FILES["image"]['name'], "images", checkExtention($_FILES["image"]['name']));
+    if (checkImgExtension(checkExtention($_FILES["image"]['full_path']))) {
+      $pathFinal =   moveFile($_FILES["image"]['tmp_name'], "images", checkExtention($_FILES["image"]['full_path']));
+      echo $pathFinal;
       $p_request = $p_connect->prepare("INSERT INTO plats(nom,description,img_url,resto) VALUES (:nom, :description,:img_url,:resto)");
       $nom = $_POST["platName"];
       $description = $_POST["description"];
@@ -43,7 +44,7 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
 
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4><?=$_SESSION["admin"]["login"]?></h4>
+        <h4><?= $_SESSION["admin"]["login"] ?></h4>
       </div>
     </div>
   </header>
@@ -52,35 +53,35 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
       <div class="side_navbar">
         <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
         <a href="./dasbord.php" id="tab" class="active">Tableau de bord</a>
-        
+
         <ul class="menu">
-        <li><a href="#">Ajout Menu ou Plat</a>
-        <ul class="sousmenu">
-          <li><a href="./AjoutMenu.php">Ajouter un menu</a></li>
-          <li><a href="#">Ajouter un plat</a></li>
-         
+          <li><a href="#">Ajout Menu ou Plat</a>
+            <ul class="sousmenu">
+              <li><a href="./AjoutMenu.php">Ajouter un menu</a></li>
+              <li><a href="#">Ajouter un plat</a></li>
+
+            </ul>
+          </li>
         </ul>
-      </li>
-      </ul>
-        <a id ='det'href="#">Detail menu</a>
+        <a id='det' href="#">Detail menu</a>
         <ul class="menu">
-        <li><a href="#">Gerer les controleurs</a>
-        <ul class="sousmenu">
-          <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="#">Consulter liste</a></li>
-         
+          <li><a href="#">Gerer les controleurs</a>
+            <ul class="sousmenu">
+              <li><a href="./gererContr.php">Ajouter</a></li>
+              <li><a href="#">Consulter liste</a></li>
+
+            </ul>
+          </li>
         </ul>
-      </li>
-      </ul>
         <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
       </div>
     </nav>
 
     <div class="main-body">
-    <div class="decor">
-    <p id="A"> Plat</p><br>
-      <form method="POST" action="" enctype="multipart/form-data">
-       
+      <div class="decor">
+        <p id="A"> Plat</p><br>
+        <form method="POST" action="" enctype="multipart/form-data">
+
           <p>
             <label>Libellé</label><br>
             <input type="text" name="platName" require /> <br />
@@ -94,13 +95,13 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
             <textarea name="description" id="" cols="2" rows="2"></textarea><br>
           </p>
           <button type="submit">Ajouter</button>
-    </form>
-      
+        </form>
+
+
+      </div>
+
 
     </div>
-
-
-  </div>
 </body>
 
 </html>
@@ -115,7 +116,7 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
     margin-top: 5%;
     text-align: center;
     padding-top: 5%;
-    
+
 
 
   }
@@ -141,7 +142,7 @@ if (isset($_POST['platName']) && isset($_POST['description']) && !empty($_POST['
     font-size: 20px;
     margin-top: 4%;
     margin-bottom: 2%;
-   margin-bottom: 10%;
+    margin-bottom: 10%;
     box-sizing: border-box;
     background-color: #FA4A0C;
     border: none;
