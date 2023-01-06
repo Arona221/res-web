@@ -1,0 +1,23 @@
+{
+  "name": "res-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arona221/res-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arona221/res-web/issues"
+  },
+  "homepage": "https://github.com/Arona221/res-web#readme",
+  "dependencies": {
+    "firebase": "^9.15.0"
+  }
+}

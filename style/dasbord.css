@@ -12,7 +12,7 @@
 body{
   background: rgb(219, 219, 219);
 }
-.header{
+.header,.header1{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,11 +20,11 @@ body{
   padding: 20px;
   background: #fff;
 }
-.logo{
+.logo,.logo1{
   display: flex;
   align-items: center;
 }
-.logo a{
+.logo a,.logo1 a{
   color: #000;
   font-size: 18px;
   font-weight: 600;
@@ -49,7 +49,7 @@ body{
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.header-icons{
+.header-icons,.header-icons1{
   display: flex;
   align-items: center;
 }
@@ -240,4 +240,11 @@ img[class="img_logapp"]
 {
   color: #FA4A0C;
   font-size: 25px
+}
+/* -------------------------------------- */
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
 }
