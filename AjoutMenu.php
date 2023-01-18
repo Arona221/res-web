@@ -22,8 +22,8 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
 <head>
   <meta charset="UTF-8" />
   <title>Ajout menu</title>
-  <link rel="stylesheet" href="style/dasbord.css" />
   <link rel="stylesheet" href="style/menu.css" />
+  <link rel="stylesheet" href="style/dasbord.css" />
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 </head>
@@ -31,13 +31,9 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
 <body>
   <header class="header">
     <div class="logo">
-
       <a id="name" href="#">LaFourchette</a>
-
     </div>
-
     <div class="header-icons">
-
       <div class="account">
         <img src="./pic/img.jpg" alt="">
         <h4><?= $_SESSION["admin"]["login"] ?></h4>
@@ -46,35 +42,11 @@ if (isset($_POST['date']) && isset($_POST['plat_repas']) && isset($_POST['plat_d
   </header>
   <div class="container">
     <nav>
-      <div class="side_navbar">
-        <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
-        <a href="./dasbord.php" id="tab" class="active">Tableau de bord</a>
-        <ul class="menu">
-          <li><a href="#">Ajout Menu ou Plat</a>
-            <ul class="sousmenu">
-              <li><a href="#">Ajouter un menu</a></li>
-              <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
-
-            </ul>
-          </li>
-        </ul>
-        <a id='det' href="#">Detail menu</a>
-        <ul class="menu">
-        <li><a href="#">Gerer les controleurs</a>
-        <ul class="sousmenu">
-          <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="./ConsulterList.php">Consulter liste</a></li>
-         
-        </ul>
-        <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
-      </div>
+      <?php require("elements/side_navbar.php") ?>
     </nav>
-
     <div class="main-body">
       <div class="decor">
         <form method="POST" action="" enctype="multipart/form-data">
-
-
           <form method="POST">
             <p id="A"> Menu du Jour</p><br>
             <p>

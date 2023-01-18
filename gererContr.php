@@ -26,44 +26,20 @@ session_start();
 
       <div class="account">
         <img src="./pic/img.jpg" alt="">
-        <h4><?=$_SESSION["admin"]["login"]?></h4>
+        <h4><?= $_SESSION["admin"]["login"] ?></h4>
       </div>
     </div>
   </header>
   <div class="container">
     <nav>
-      <div class="side_navbar">
-        <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
-        <a href="./dasbord.php" id="tab" class="active">Tableau de bord</a>
-        <ul class="menu">
-        <li><a href="#">Ajout Menu ou Plat</a>
-        <ul class="sousmenu">
-          <li><a href="./AjoutMenu.php">Ajouter un menu</a></li>
-          <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
-         
-        </ul>
-      </li>
-      </ul>
-        <a id ='det'href="#">Detail menu</a>
-        <ul class="menu">
-      <li><a href="#">Gerer les controleurs</a>
-        <ul class="sousmenu">
-          <li><a href="./gererContr.php">Ajouter</a></li>
-          <li><a href="./ConsulterList.php">Consulter liste</a></li>
-         
-        </ul>
-      </li>
-      </ul>
-        
-        <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
-      </div>
+      <?php require("elements/side_navbar.php") ?>
     </nav>
 
     <div class="main-body">
-    
+
       <form method="POST" action="./TraitCont.php" enctype="multipart/form-data">
         <div class="decor">
-        
+
           <p>
             <label>Nom</label><br>
             <input type="text" name="nameCon" require="require" /> <br />
@@ -88,14 +64,12 @@ session_start();
             <label>Adresse</label><br>
             <input type="text" name="AdresseCont" require /> <br />
           </p>
-      
-        <button type="submit">Ajouter</button>
-     
+
+          <button type="submit">Ajouter</button>
+
+        </div>
+      </form>
     </div>
-    </form> 
-
-
-  </div>
 </body>
 
 </html>
@@ -113,8 +87,7 @@ session_start();
 
   }
 
-  .decor input
-   {
+  .decor input {
     width: 50%;
     height: auto;
     font-size: 20px;
@@ -133,7 +106,7 @@ session_start();
     font-size: 20px;
     margin-top: 1%;
     margin-bottom: 2%;
-    
+
     box-sizing: border-box;
     background-color: #FA4A0C;
     border: none;
@@ -146,8 +119,4 @@ session_start();
     font-weight: bold;
     color: #FA4A0C;
   }
-
-
-
-
 </style>

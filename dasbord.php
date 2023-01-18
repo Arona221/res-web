@@ -17,8 +17,8 @@ if (isset($_SESSION["admin"])) {
   $r1_request = $p1_request->fetchAll(PDO::FETCH_ASSOC);
   $nbr_petit_dej = $r1_request[0]["nbr_petit_dej"];
   //
-  $date_repas1 = $date1 . " 18:00:00";
-  $date_repas2 = $date1 . " 21:00:00";
+  $date_repas1 = $date1 . " 11:00:00";
+  $date_repas2 = $date1 . " 14:00:00";
   $p1_request = getConnection()->prepare("SELECT count(*) as nbr_repas  FROM detail_transaction_resto WHERE resto=:resto AND type=:type and (date>=:date_repas1 AND date<=:date_repas2)");
   $p1_request->execute(array("resto" => $nom, "type" => "repas", "date_repas1" => $date_repas1, "date_repas2" => $date_repas2));
   $r1_request = $p1_request->fetchAll(PDO::FETCH_ASSOC);
@@ -48,51 +48,11 @@ if (isset($_SESSION["admin"])) {
 
 <body>
   <header class="header">
-    <div class="logo">
-
-      <a id="name" href="#">LaFourchette</a>
-
-    </div>
-
-    <div class="header-icons">
-
-      <div class="account">
-        <img src="./pic/img.jpg" alt="">
-        <h4><?= $_SESSION["admin"]["login"] ?></h4>
-      </div>
-    </div>
+    <?php require("elements/top_nav_bar.php") ?>
   </header>
   <div class="container">
     <nav>
-
-      <div class="side_navbar">
-
-
-        <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
-        <a href="#" id="tab" class="active">Tableau de bord</a>
-
-        <ul class="menu">
-          <li><a href="#"> Ajouter Menu ou Plat </a>
-            <ul class="sousmenu">
-              <li><a href="./AjoutMenu.php">Ajouter un menu</a></li>
-              <li><a href="./AjoutPlat.php">Ajouter un plat</a></li>
-
-            </ul>
-          </li>
-        </ul>
-        <a id='det' href="detail.php">Detail menu</a>
-        <ul class="menu">
-          <li><a href="#">Gerer les controleurs</a>
-            <ul class="sousmenu">
-              <li><a href="./gererContr.php">Ajouter</a></li>
-              <li><a href="ConsulterList.php">Consulter liste</a></li>
-
-            </ul>
-            <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
-
-
-
-      </div>
+      <?php require("elements/side_navbar.php") ?>
     </nav>
 
     <div class="main-body">
@@ -167,5 +127,6 @@ if (isset($_SESSION["admin"])) {
   </div>
   </div>
 </body>
+<?php include("elements/footer.html") ?>
 
 </html>

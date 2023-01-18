@@ -51,31 +51,8 @@ if (isset($_POST['platName']) && isset($_POST['description']) && isset($_POST["t
   </header>
   <div class="container">
     <nav>
-      <div class="side_navbar">
-        <p> <img src="img/logo.png" class="img_logapp" alt=""></p>
-        <a href="./dasbord.php" id="tab" class="active">Tableau de bord</a>
-
-        <ul class="menu">
-          <li><a href="#">Ajout Menu ou Plat</a>
-            <ul class="sousmenu">
-              <li><a href="./AjoutMenu.php">Ajouter un menu</a></li>
-              <li><a href="#">Ajouter un plat</a></li>
-
-            </ul>
-          </li>
-        </ul>
-        <a id='det' href="#">Detail menu</a>
-        <ul class="menu">
-          <li><a href="#">Gerer les controleurs</a>
-            <ul class="sousmenu">
-              <li><a href="./gererContr.php">Ajouter</a></li>
-              <li><a href="./ConsulterList.php">Consulter liste</a></li>
-
-            </ul>
-            <a id="dec" href="index.php"><i class="fa-solid fa-right-to-bracket"></i> Déconnexion</a>
-      </div>
+      <?php require("elements/side_navbar.php") ?>
     </nav>
-
     <div class="main-body">
       <div class="decor">
         <p id="A"> Plat</p><br>
@@ -104,11 +81,12 @@ if (isset($_POST['platName']) && isset($_POST['description']) && isset($_POST["t
           <button type="submit">Ajouter</button>
         </form>
 
-
+        
       </div>
-
-
+      <a class="voirPlat" href="afficherPlats.php">voir les plats disponibles</a>
     </div>
+    <!-- <?php include("elements/footer.html") ?> -->
+
 </body>
 
 </html>
@@ -123,6 +101,7 @@ if (isset($_POST['platName']) && isset($_POST['description']) && isset($_POST["t
     margin-top: 5%;
     text-align: center;
     padding-top: 5%;
+    margin-bottom: 3%;
 
 
 
@@ -143,7 +122,8 @@ if (isset($_POST['platName']) && isset($_POST['description']) && isset($_POST["t
     text-align: center;
   }
 
-  .decor button {
+  .decor button
+   {
     width: 50%;
     height: auto;
     font-size: 20px;
@@ -155,6 +135,19 @@ if (isset($_POST['platName']) && isset($_POST['description']) && isset($_POST["t
     border: none;
     color: #ffffff;
     border-radius: 5px;
+  }
+
+  .voirPlat {
+    width: 50%;
+    height: auto;
+    font-size: 20px;
+    margin-top: 10%;
+    box-sizing: border-box;
+    background-color: #FA4A0C;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-left: 35%;
   }
 
   #A {

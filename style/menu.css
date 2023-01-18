@@ -38,7 +38,7 @@
     display: block;
     color: #FFF;
     text-decoration: none;
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(0, 0, 0);
 }
 
 .menu .sousmenu li a:hover {
@@ -49,7 +49,7 @@
 .menu li:hover .sousmenu {
     display: block;
 }
-#det
+.det
 {
     margin-left: 4%;
 }

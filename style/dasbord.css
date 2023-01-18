@@ -12,7 +12,7 @@
 body{
   background: rgb(219, 219, 219);
 }
-.header,.header1{
+.header,.footer{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -247,4 +247,12 @@ ul{
 }
 a{
   text-decoration: none;
+}
+/* ---------------------- affichage plats */
+.container-main{
+  display: inline-block;
+  vertical-align: top;
+}
+.footer{
+  text-align: center;
 }
